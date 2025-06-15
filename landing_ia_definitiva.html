@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domine a IA: O Guia Definitivo para Máxima Produtividade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/><polygon fill="rgba(255,255,255,0.05)" points="0,200 1000,0 1000,400 0,600"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.4);
+        }
+
+        /* Problem Section */
+        .problem {
+            background: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .problem h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .problem-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 5px solid #FF6B6B;
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .problem-card h3 {
+            color: #FF6B6B;
+            margin-bottom: 1rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 5rem 0;
+            color: white;
+        }
+
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .solution-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .solution-example {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .prompt-before, .prompt-after {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .prompt-before {
+            background: rgba(255,107,107,0.2);
+            border-left: 4px solid #FF6B6B;
+        }
+
+        .prompt-after {
+            background: rgba(46,204,113,0.2);
+            border-left: 4px solid #2ECC71;
+        }
+
+        /* Timer */
+        .timer-section {
+            background: #1a1a1a;
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .timer-box {
+            background: #FF6B6B;
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .timer-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: #667eea;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        /* Categories Section */
+        .categories {
+            background: white;
+            padding: 5rem 0;
+        }
+
+        .categories h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .category-card:hover::before {
+            animation: shine 0.6s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-features {
+            list-style: none;
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .category-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .category-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2ECC71;
+            font-weight: bold;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 1rem 0;
+        }
+
+        .price-before {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .stats { flex-direction: column; gap: 1rem; }
+            .solution-content { grid-template-columns: 1fr; }
+            .categories-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>90% das Pessoas Usam IA ERRADO</h1>
+                <p class="hero-subtitle">Descubra os segredos para transformar ChatGPT e outras IAs em sua ferramenta de produtividade máxima</p>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">5x</div>
+                        <div>Mais Produtivo</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100+</div>
+                        <div>Prompts Testados</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div>Áreas de Foco</div>
+                    </div>
+                </div>
+
+                <a href="https://kiwify.app/SEU_LINK_AQUI" class="cta-button" target="_blank">QUERO DOMINAR A IA AGORA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>O Problema que Você Não Percebe</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>❌ Prompts Vagos</h3>
+                    <p>Você faz perguntas genéricas e recebe respostas genéricas. "Me ajude com marketing" não funciona.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Falta de Contexto</h3>
+                    <p>A IA não lê mentes. Sem contexto adequado, ela não pode entregar o que você realmente precisa.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Frustração Constante</h3>
+                    <p>Você sabe que a IA é poderosa, mas não consegue extrair seu verdadeiro potencial.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Desperdício de Poder</h3>
+                    <p>Você tem uma ferramenta mais poderosa do que imagina, mas usa apenas 10% do seu potencial real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h2>A Diferença Entre Amador e Profissional</h2>
+                    <p>A qualidade da sua resposta é diretamente proporcional à qualidade da sua pergunta. Veja a diferença:</p>
+                </div>
+                <div class="solution-example">
+                    <h4>❌ ERRADO:</h4>
+                    <div class="prompt-before">"Me ensine a fazer um ovo"</div>
+                    
+                    <h4>✅ CORRETO:</h4>
+                    <div class="prompt-after">"Sou iniciante na cozinha, tenho apenas frigideira e fogão. Preciso de receita rápida e saudável para café da manhã. Me ensine ovo mexido cremoso sem leite, com passo a passo detalhado."</div>
+                    
+                    <p><strong>Resultado:</strong> Resposta personalizada, útil e que resolve seu problema real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timer Section -->
+    <section class="timer-section">
+        <div class="container">
+            <h3>⏰ OFERTA LIMITADA - Termina em:</h3>
+            <div class="timer-container">
+                <div class="timer-box">
+                    <span class="timer-number" id="hours">23</span>
+                    <span class="timer-label">HORAS</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-number" id="minutes">45</span>
+                    <span class="timer-label">MINUTOS</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-number" id="seconds">30</span>
+                    <span class="timer-label">SEGUNDOS</span>
+                </div>
+            </div>
+            <p>Não perca a chance de transformar sua relação com IA!</p>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; color: #333;">
+                Mais de 100 Pessoas Já Transformaram Sua Produtividade
+            </h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Minha produtividade aumentou 300%! Agora consigo criar conteúdo em minutos ao invés de horas. Os prompts são geniais!"
+                    </p>
+                    <p class="testimonial-author">Marina Santos</p>
+                    <p class="testimonial-role">Marketing Digital</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Finalmente entendi como usar IA de verdade. Economizo 4 horas por dia e meus estudos ficaram muito mais eficientes."
+                    </p>
+                    <p class="testimonial-author">Carlos Oliveira</p>
+                    <p class="testimonial-role">Estudante de Medicina</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "As técnicas de brainstorming mudaram minha forma de trabalhar. Nunca mais tive bloqueio criativo!"
+                    </p>
+                    <p class="testimonial-author">Ana Costa</p>
+                    <p class="testimonial-role">Designer</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Automatizei 80% das minhas tarefas repetitivas. Agora tenho tempo para focar no que realmente importa."
+                    </p>
+                    <p class="testimonial-author">Roberto Lima</p>
+                    <p class="testimonial-role">Empreendedor</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Cada prompt vale ouro! Transformei minha rotina de estudos e aprendo 5x mais rápido agora."
+                    </p>
+                    <p class="testimonial-author">Julia Ferreira</p>
+                    <p class="testimonial-role">Concurseira</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Impressionante como pequenos ajustes nos prompts fazem toda diferença. Recomendo 100%!"
+                    </p>
+                    <p class="testimonial-author">Pedro Sousa</p>
+                    <p class="testimonial-role">Consultor</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="font-size: 1.2rem; color: #667eea; font-weight: bold;">
+                    🎯 Nota média: 4.9/5 estrelas | 📈 +100 pessoas transformadas
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2>3 Pilares para Dominar Qualquer IA</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">🚀</div>
+                    <h3>PRODUTIVIDADE MÁXIMA</h3>
+                    <p>Transforme sua rotina com prompts que economizam horas do seu dia</p>
+                    <ul class="category-features">
+                        <li>Automação de tarefas repetitivas</li>
+                        <li>Organização e planejamento eficiente</li>
+                        <li>Gestão de projetos inteligente</li>
+                        <li>Templates para emails e documentos</li>
+                        <li>Análise de dados simplificada</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🧠</div>
+                    <h3>APRENDIZADO ACELERADO</h3>
+                    <p>Domine qualquer assunto 3x mais rápido com técnicas de estudo revolucionárias</p>
+                    <ul class="category-features">
+                        <li>Resumos inteligentes e mapas mentais</li>
+                        <li>Explicações personalizadas</li>
+                        <li>Simulados e testes práticos</li>
+                        <li>Cronogramas de estudo otimizados</li>
+                        <li>Técnicas de memorização</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💡</div>
+                    <h3>FLOW DE IDEIAS</h3>
+                    <p>Desbloqueie sua criatividade e gere ideias inovadoras sob demanda</p>
+                    <ul class="category-features">
+                        <li>Brainstorming estruturado</li>
+                        <li>Solução criativa de problemas</li>
+                        <li>Geração de conteúdo original</li>
+                        <li>Desenvolvimento de conceitos</li>
+                        <li>Inovação sistemática</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="oferta">
+        <div class="container">
+            <h2>Pare de Perder Tempo com IA Ineficiente</h2>
+            <p>Acesso completo ao método que já transformou milhares de profissionais</p>
+            
+            <div class="price">
+                <span class="price-before">R$ 197</span><br>
+                R$ 19,90
+            </div>
+            
+            <a href="https://kiwify.app/SEU_LINK_AQUI" class="cta-button" target="_blank">GARANTIR ACESSO AGORA</a>
+            
+            <p style="margin-top: 1rem; opacity: 0.9;">
+                ✅ Acesso vitalício<br>
+                ✅ 100+ Prompts testados<br>
+                ✅ Atualizações gratuitas<br>
+                ✅ Garantia de 7 dias
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Timer countdown
+        function startTimer() {
+            const timer = {
+                hours: 23,
+                minutes: 45,
+                seconds: 30
+            };
+
+            function updateTimer() {
+                document.getElementById('hours').textContent = timer.hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = timer.minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = timer.seconds.toString().padStart(2, '0');
+
+                if (timer.seconds > 0) {
+                    timer.seconds--;
+                } else if (timer.minutes > 0) {
+                    timer.minutes--;
+                    timer.seconds = 59;
+                } else if (timer.hours > 0) {
+                    timer.hours--;
+                    timer.minutes = 59;
+                    timer.seconds = 59;
+                }
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // Start timer when page loads
+        startTimer();
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = counter.innerText;
+                const numericTarget = parseInt(target.replace(/\D/g, ''));
+                let current = 0;
+                const increment = numericTarget / 30;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericTarget) {
+                        counter.innerText = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.innerText = Math.floor(current) + (target.includes('x') ? 'x' : target.includes('+') ? '+' : '');
+                    }
+                }, 50);
+            });
+        }
+
+        // Trigger animation when section appears
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.stats'));
+
+        // Conversion tracking for Kiwify
+        function trackKiwifyConversion() {
+            console.log('Conversão rastreada - usuário clicou no CTA');
+        }
+
+        // Add tracking event to CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', trackKiwifyConversion);
+        });
+    </script>
+</body>
+</html>
